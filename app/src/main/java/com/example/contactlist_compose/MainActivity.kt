@@ -77,37 +77,37 @@ fun ContactScreen(contactList: List<Contact>) {
     var selectedContact by remember { mutableStateOf<Contact?>(null) }
     var gridSize = remember { mutableStateOf(1) }
     Column() {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = "Contatos",
-                fontSize = 40.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Row() {
-                IconButton(onClick = {gridSize.value = 1}) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_list),
-                        contentDescription = "list icon",
-                        modifier = Modifier.size(30.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.size(4.dp))
-                IconButton(onClick = {gridSize.value = 2}) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_grid),
-                        contentDescription = "grid icon",
-                        modifier = Modifier.size(30.dp)
-                    )
-                }
-                Spacer(modifier = Modifier.size(8.dp))
-            }
-        }
         if (selectedContact != null) {
             ContactDetail(contact = selectedContact!!, gridSize = gridSize) {
                 selectedContact = null
             }
         } else {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Contatos",
+                    fontSize = 40.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Row() {
+                    IconButton(onClick = {gridSize.value = 1}) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_list),
+                            contentDescription = "list icon",
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.size(4.dp))
+                    IconButton(onClick = {gridSize.value = 2}) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_grid),
+                            contentDescription = "grid icon",
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.size(8.dp))
+                }
+            }
             LazyVerticalGrid(
                 columns = androidx.compose.foundation.lazy.grid.GridCells.Fixed(gridSize.value),
                 modifier = Modifier.fillMaxSize()
